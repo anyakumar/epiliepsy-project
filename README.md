@@ -111,11 +111,6 @@ The system is trained on the **UCI Epileptic Seizure Recognition Dataset**.
 
 ---
 
-## 👥 Team & Credits
-
-**SRM Epilepsy Project**
-*   **Contributors**: Anya Kumar, Adwait Panigrahi
-*   **Mentor**: Dr. Sheryl Oliver A
 
 ---
 
