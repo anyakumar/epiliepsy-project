@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Analysis - SRM Epilepsy Project</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-[#1e2330] border-b border-[#dbdfe6] dark:border-[#2a3140] px-6 lg:px-10 py-4 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">waves</span>
+                <span class="text-lg font-bold">SRM Epilepsy Project</span>
+            </a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+                <a href="datasets.html" class="hover:text-primary transition-colors">Datasets</a>
+                <a href="analysis.html" class="text-primary font-bold">Analysis</a>
+                <a href="compare.html" class="hover:text-primary transition-colors">Comparison</a>
+                <a href="team.html" class="hover:text-primary transition-colors">Team</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center py-8 px-4 sm:px-6">
+        <div class="w-full max-w-[960px] flex flex-col gap-8">
+            <!-- Intro / Context -->
+            <div class="flex flex-col gap-2">
+                <h2 class="text-2xl font-bold text-[#111318] dark:text-white">New Analysis</h2>
+                <p class="text-[#616f89] dark:text-[#9ca3af] text-sm">Upload raw EEG data (CSV format) to detect
+                    potential seizure patterns using our machine learning pipeline.</p>
+            </div>
+            <!-- Configuration Card -->
+            <div
+                class="bg-white dark:bg-[#1e2330] rounded-xl shadow-sm border border-[#dbdfe6] dark:border-[#2a3140] overflow-hidden">
+                <div class="p-6 md:p-8 flex flex-col gap-8">
+                    <!-- File Upload Zone -->
+                    <div class="flex flex-col gap-3">
+                        <label
+                            class="text-[#111318] dark:text-white text-sm font-semibold uppercase tracking-wide">Input
+                            Data</label>
+                        <div
+                            class="group relative flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed border-[#dbdfe6] dark:border-[#4b5563] bg-[#f8fafc] dark:bg-[#1a202c] hover:bg-[#f1f5f9] dark:hover:bg-[#2d3748] transition-colors px-6 py-12 cursor-pointer">
+                            <div
+                                class="size-12 rounded-full bg-white dark:bg-[#2d3748] shadow-sm flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[28px]">cloud_upload</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 text-center">
+                                <p class="text-[#111318] dark:text-white text-lg font-medium">Upload EEG CSV Data</p>
+                                <p class="text-[#616f89] dark:text-[#9ca3af] text-sm">Drag and drop your file here, or
+                                    click to browse</p>
+                                <p class="text-[#9ca3af] dark:text-[#6b7280] text-xs mt-1">Supported: .csv (178
+                                    columns). Max 50MB.</p>
+                            </div>
+                            <input accept=".csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                type="file" id="file-input" />
+                        </div>
+                    </div>
+                    <!-- Model Selection & Action -->
+                    <div class="flex flex-col md:flex-row gap-6 items-end">
+                        <div class="flex-1 flex flex-col gap-2 w-full">
+                            <label class="text-[#111318] dark:text-white text-sm font-semibold uppercase tracking-wide"
+                                for="model-select">Machine Learning Model</label>
+                            <div class="relative">
+                                <select
+                                    class="w-full h-12 pl-4 pr-10 rounded-lg border border-[#dbdfe6] dark:border-[#4b5563] bg-white dark:bg-[#1a202c] text-[#111318] dark:text-white text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none cursor-pointer"
+                                    id="model-select">
+                                    <option value="logistic_regression">Logistic Regression</option>
+                                    <option value="svm_rbf">SVM (RBF Kernel) - High Accuracy</option>
+                                    <option value="random_forest">Random Forest Classifier</option>
+                                    <option value="xgboost">XGBoost (Recommended)</option>
+                                </select>
+                                <div
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#616f89]">
+                                    <span class="material-symbols-outlined">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="analyzeEEG()" id="analyze-btn" disabled
+                            class="w-full md:w-auto min-w-[160px] h-12 bg-primary hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                            Analyze EEG
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Results Section (Initially hidden) -->
+            <div id="results-section" class="flex flex-col gap-4 animate-fade-in hidden">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-[#111318] dark:text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">assessment</span>
+                        Analysis Results
+                    </h3>
+                    <button id="download-btn" onclick="downloadResults()"
+                        class="hidden flex items-center gap-2 px-4 py-2 text-sm font-bold text-primary border border-primary rounded-lg hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-sm">download</span>
+                        Download JSON
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Prediction Card -->
+                    <div id="pred-card"
+                        class="bg-white dark:bg-[#1e2330] rounded-xl shadow-sm border border-[#dbdfe6] p-6 flex flex-col items-center justify-center text-center gap-3 relative overflow-hidden group">
+                        <div id="pred-bar" class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+                        <span id="pred-icon-bg"
+                            class="inline-flex items-center justify-center size-12 rounded-full bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 mb-1">
+                            <span id="pred-icon" class="material-symbols-outlined text-[32px]">warning</span>
+                        </span>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider text-[#616f89] dark:text-[#9ca3af]">
+                            Prediction</h4>
+                        <p id="pred-text" class="text-2xl font-bold text-[#111318] dark:text-white">Seizure Detected</p>
+                        <span id="pred-badge"
+                            class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-bold rounded-full uppercase tracking-wide">Abnormal
+                            Pattern</span>
+                    </div>
+                    <!-- Confidence Meter -->
+                    <div
+                        class="bg-white dark:bg-[#1e2330] rounded-xl shadow-sm border border-[#dbdfe6] dark:border-[#2a3140] p-6 flex flex-col justify-center gap-4">
+                        <div class="flex justify-between items-end">
+                            <h4
+                                class="text-sm font-semibold uppercase tracking-wider text-[#616f89] dark:text-[#9ca3af]">
+                                Confidence Score</h4>
+                            <span id="conf-val" class="text-2xl font-bold text-primary">0%</span>
+                        </div>
+                        <div class="w-full bg-[#f0f2f4] dark:bg-[#2d3748] rounded-full h-3 overflow-hidden">
+                            <div id="conf-bar" class="bg-primary h-3 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <p id="conf-label" class="text-xs text-[#616f89] dark:text-[#9ca3af]">Confidence Level</p>
+                    </div>
+                    <!-- Explanation Box -->
+                    <div
+                        class="lg:col-span-3 bg-white dark:bg-[#1e2330] rounded-xl shadow-sm border border-[#dbdfe6] dark:border-[#2a3140] p-6">
+                        <h4
+                            class="text-sm font-semibold uppercase tracking-wider text-[#616f89] dark:text-[#9ca3af] mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">info</span>
+                            Interpretation
+                        </h4>
+                        <div
+                            class="bg-[#f8fafc] dark:bg-[#1a202c] border border-[#f0f2f4] dark:border-[#2d3748] rounded-lg p-4">
+                            <p id="explanation-text"
+                                class="text-[#111318] dark:text-[#e2e8f0] text-sm leading-relaxed font-mono">
+                                Awaiting analysis...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer Disclaimer -->
+    <footer class="mt-auto py-6 bg-white dark:bg-[#1e2330] border-t border-[#dbdfe6] dark:border-[#2a3140]">
+        <div class="max-w-[960px] mx-auto px-6 text-center">
+            <p class="text-xs text-[#9ca3af] dark:text-[#6b7280]">
+                <span class="font-bold">DISCLAIMER:</span> This tool is for academic research purposes only. The results
+                generated by this system are based on experimental machine learning models and are not intended for
+                clinical diagnosis or medical decision-making. Please consult a qualified neurologist for medical
+                advice.
+            </p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Form Validation Logic
+        const fileInput = document.getElementById('file-input');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        // Drag and drop visual feedback
+        const dropZone = fileInput.closest('.group');
+
+        fileInput.addEventListener('change', validateForm);
+
+        function validateForm() {
+            if (fileInput.files.length > 0) {
+                analyzeBtn.disabled = false;
+                // Visual update for file selected
+                dropZone.classList.add('border-primary', 'bg-blue-50/50');
+                dropZone.querySelector('p.text-lg').innerText = fileInput.files[0].name;
+            } else {
+                analyzeBtn.disabled = true;
+                dropZone.classList.remove('border-primary', 'bg-blue-50/50');
+            }
+        }
+
+        let currentResultData = null;
+
+        function downloadResults() {
+            if (!currentResultData) return;
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentResultData, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "seizure_analysis_report.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+        async function analyzeEEG() {
+            const fileInput = document.getElementById('file-input');
+            const modelSelect = document.getElementById('model-select');
+            const resultsSection = document.getElementById('results-section');
+
+            if (!fileInput.files[0]) {
+                alert("Please upload a CSV file.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('model_name', modelSelect.value);
+
+            // Basic loading indication
+            const btn = document.querySelector('button[onclick]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Analyzing...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    alert("Error: " + (err.detail || "Unknown error"));
+                    return;
+                }
+
+                const data = await response.json();
+                // Handle if list or single object
+                const result = data.results ? data.results[0] : data;
+                currentResultData = result;
+
+                // Show Download Button
+                document.getElementById('download-btn').classList.remove('hidden');
+
+                // --- Update UI ---
+                // 1. Prediction
+                const isSeizure = result.is_seizure;
+
+                // Elements
+                const predCard = document.getElementById('pred-card');
+                const predBar = document.getElementById('pred-bar');
+                const predIconBg = document.getElementById('pred-icon-bg');
+                const predIcon = document.getElementById('pred-icon');
+                const predText = document.getElementById('pred-text');
+                const predBadge = document.getElementById('pred-badge');
+
+                if (isSeizure) {
+                    // Seizure Styles (Red)
+                    predBar.className = "absolute top-0 left-0 w-full h-1 bg-red-500";
+                    predIconBg.className = "inline-flex items-center justify-center size-12 rounded-full bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 mb-1";
+                    predIcon.innerText = "warning";
+                    predText.innerText = "Seizure Detected";
+                    predBadge.className = "px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-bold rounded-full uppercase tracking-wide";
+                    predBadge.innerText = "Abnormal Pattern";
+                } else {
+                    // Normal Styles (Green)
+                    predBar.className = "absolute top-0 left-0 w-full h-1 bg-green-500";
+                    predIconBg.className = "inline-flex items-center justify-center size-12 rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 mb-1";
+                    predIcon.innerText = "check_circle";
+                    predText.innerText = "No Seizure Detected";
+                    predBadge.className = "px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide";
+                    predBadge.innerText = "Normal Pattern";
+                }
+
+                // 2. Confidence
+                const conf = result.confidence_score * 100;
+                document.getElementById('conf-val').innerText = conf.toFixed(1) + "%";
+                document.getElementById('conf-bar').style.width = conf + "%";
+                document.getElementById('conf-label').innerText = "Confidence Label: " + (result.confidence_label || "N/A");
+
+                // 3. Explanation
+                document.getElementById('explanation-text').innerText = result.explanation;
+
+                // Show results
+                resultsSection.classList.remove('hidden');
+                // Scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+            } catch (e) {
+                console.error(e);
+                alert("An error occurred connecting to the backend.");
+            } finally {
+                // Reset button
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SRM Epilepsy Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-[#1e2330] border-b border-[#dbdfe6] dark:border-[#2a3140] px-6 lg:px-10 py-4 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">waves</span>
+                <span class="text-lg font-bold">SRM Epilepsy Project</span>
+            </a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="text-primary font-bold">Home</a>
+                <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+                <a href="datasets.html" class="hover:text-primary transition-colors">Datasets</a>
+                <a href="analysis.html" class="hover:text-primary transition-colors">Analysis</a>
+                <a href="compare.html" class="hover:text-primary transition-colors">Comparison</a>
+                <a href="team.html" class="hover:text-primary transition-colors">Team</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-6 text-center">
+        <!-- Hero -->
+        <div class="max-w-3xl space-y-6 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-black leading-tight text-[#111318] dark:text-white">
+                EEG Seizure Detection System
+            </h1>
+            <p class="text-lg md:text-xl text-[#616f89] dark:text-gray-300 max-w-2xl mx-auto">
+                A machine learning–based research platform for analyzing EEG signals and identifying seizure-related
+                patterns.
+            </p>
+
+            <!-- Highlights -->
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-600 my-8">
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full">ML-Powered Analysis</span>
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full">Multi-Algorithm Support</span>
+                <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full">Academic Research</span>
+            </div>
+
+            <div class="flex justify-center">
+                <a href="analysis.html"
+                    class="flex items-center gap-2 h-12 px-8 bg-primary hover:bg-blue-700 text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    Go to EEG Analysis <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+
+            <!-- Disclaimer -->
+            <div
+                class="mt-12 p-6 bg-amber-50 border border-amber-200 rounded-xl text-left max-w-2xl mx-auto flex gap-4">
+                <span class="material-symbols-outlined text-amber-600 text-3xl">warning</span>
+                <div>
+                    <h3 class="font-bold text-amber-800 text-lg">Important Disclaimer</h3>
+                    <p class="text-amber-800/90 text-sm leading-relaxed">
+                        This system is <strong>NOT</strong> a medical diagnostic tool.
+                        It is intended strictly for academic and research use only.
+                        Does not provide medical advice or diagnosis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-sm text-gray-500 border-t border-gray-100">
+        <p>SRM Epilepsy Project • Academic Research Initiative • 2024</p>
+    </footer>
+</body>
+
+</html>

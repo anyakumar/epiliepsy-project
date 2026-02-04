@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Comparison - SRM Epilepsy Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "seizure-red": "#ef4444",
+                        "normal-green": "#22c55e",
+                        "neutral-gray": "#64748b"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for data tables if needed */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px
+        }
+
+        .wave-bg {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAQcHiYaB9-4olNBB2XawEDT-FZOQKk00nyaAxYTj4tlr7vozwV6WC04dz9z13UfKaKMPaADiXiPvrtLxWeKV7dNVQl91DdBAYikqEHU9k-lpjzIrEHcGRsvC_0VwWksJLKZ6iGquVb12hlXMFilrbvu5pcUOiktkncyVrG0ucMSpCn865LarpOsNnLxlx4vkCRzvZdwOhQlnGW2RVCvvNGTIdZ3GMbdKHzT5cCRhkWYi9BmdYOJZFL_KYcm3lese3d7Wu4VwUyNac);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111318] flex flex-col min-h-screen overflow-x-hidden">
+    <!-- Top Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-[#1e2330] border-b border-[#dbdfe6] dark:border-[#2a3140] px-6 lg:px-10 py-4 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">waves</span>
+                <span class="text-lg font-bold">SRM Epilepsy Project</span>
+            </a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+                <a href="datasets.html" class="hover:text-primary transition-colors">Datasets</a>
+                <a href="analysis.html" class="hover:text-primary transition-colors">Analysis</a>
+                <a href="compare.html" class="text-primary font-bold">Comparison</a>
+                <a href="team.html" class="hover:text-primary transition-colors">Team</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-1 px-4 py-8 lg:px-10 xl:px-20 max-w-[1600px] mx-auto w-full">
+        <!-- Page Heading & Actions -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div class="flex min-w-72 flex-col gap-2">
+                <h1 class="text-[#111318] text-3xl font-black leading-tight tracking-[-0.033em]">Multi-Model Comparative
+                    Analysis</h1>
+                <p class="text-[#616f89] text-base font-normal leading-normal max-w-2xl">Upload patient EEG data to run
+                    simultaneous inferences. Compare confidence scores and feature importance across different
+                    algorithmic approaches.</p>
+            </div>
+            <button
+                class="flex items-center gap-2 h-10 px-4 bg-white border border-[#e2e8f0] rounded-lg text-[#111318] text-sm font-bold shadow-sm hover:bg-gray-50 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">download</span>
+                <span>Export Report</span>
+            </button>
+        </div>
+        <!-- Control Panel: Upload & Config -->
+        <div class="bg-white rounded-xl border border-[#e2e8f0] shadow-sm mb-8 overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#e2e8f0]">
+                <!-- Upload Section -->
+                <div class="lg:col-span-5 p-6">
+                    <h3 class="text-sm font-bold text-[#111318] mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[20px]">upload_file</span>
+                        1. Select Patient Data
+                    </h3>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex flex-col w-full">
+                            <div class="flex w-full items-stretch rounded-lg h-12">
+                                <input
+                                    class="flex-1 w-full bg-[#f8fafc] border border-[#e2e8f0] rounded-l-lg px-4 text-sm text-[#111318] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                                    placeholder="patient_eeg_sample_042.edf" readonly=""
+                                    value="patient_eeg_sample_042.edf" />
+                                <button
+                                    class="flex items-center justify-center px-6 bg-primary hover:bg-blue-700 text-white text-sm font-bold rounded-r-lg transition-colors">
+                                    Browse
+                                </button>
+                            </div>
+                        </label>
+                        <div class="flex items-center gap-2 text-xs text-[#64748b]">
+                            <span class="material-symbols-outlined text-[16px]">info</span>
+                            <span>Supports .EDF, .CSV (Max 500MB). Last upload: 2 mins ago.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Model Selection & Run -->
+                <div class="lg:col-span-7 p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-[#111318] mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+                            2. Active Models
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <div
+                                class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                <p class="text-primary text-sm font-semibold">Logistic Regression</p>
+                            </div>
+                            <div
+                                class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                <p class="text-primary text-sm font-semibold">SVM (RBF Kernel)</p>
+                            </div>
+                            <div
+                                class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                <p class="text-primary text-sm font-semibold">Random Forest</p>
+                            </div>
+                            <div
+                                class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                <p class="text-primary text-sm font-semibold">XGBoost</p>
+                            </div>
+                            <button
+                                class="flex items-center gap-x-1 rounded-full border border-dashed border-[#94a3b8] px-3 py-1.5 hover:bg-gray-50 transition-colors">
+                                <span class="material-symbols-outlined text-[#64748b] text-[18px]">add</span>
+                                <p class="text-[#64748b] text-sm font-medium">Add Model</p>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-end">
+                        <button
+                            class="flex items-center gap-2 h-10 px-6 bg-primary hover:bg-blue-700 text-white text-sm font-bold rounded-lg shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                            <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                            Run Comparative Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Grid -->
+        <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 hidden">
+            <!-- Dynamic Content will be injected here -->
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden flex-col items-center justify-center py-12">
+            <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+            <p class="mt-4 text-[#64748b]">Running multi-model inference...</p>
+        </div>
+
+
+    </main>
+
+    <script>
+        const fileInput = document.querySelector('input[type="file"]');
+        // If the implementation above didn't change input type from text to file, we must fix it. 
+        // The previous HTML had a readonly text input and "Browse" button mock.
+        // Let's attach a real file input hidden or otherwise.
+    </script>
+
+    <!-- Fix Upload Section Mechanism -->
+    <script>
+        // Transform the dummy input into a working one
+        const uploadContainer = document.querySelector('.lg\\:col-span-5 .flex.w-full');
+        if (uploadContainer) {
+            uploadContainer.innerHTML = `
+                <input type="file" id="compare-file" accept=".csv" class="hidden" />
+                <div class="flex flex-1 items-center border border-[#e2e8f0] rounded-lg overflow-hidden h-12">
+                     <span id="filename-display" class="flex-1 px-4 text-sm text-[#94a3b8] truncate">No file selected</span>
+                     <label for="compare-file" class="bg-primary hover:bg-blue-700 text-white text-sm font-bold px-6 h-full flex items-center cursor-pointer transition-colors">
+                        Browse
+                     </label>
+                </div>
+            `;
+
+            const realInput = document.getElementById('compare-file');
+            const display = document.getElementById('filename-display');
+
+            realInput.addEventListener('change', (e) => {
+                if (e.target.files[0]) {
+                    display.innerText = e.target.files[0].name;
+                    display.classList.remove('text-[#94a3b8]');
+                    display.classList.add('text-[#111318]');
+                }
+            });
+        }
+
+        // Fix Run Button
+        const runBtn = document.querySelector('button .material-symbols-outlined[class*="play_arrow"]').parentElement;
+        if (runBtn) {
+            runBtn.onclick = async () => {
+                const fileInput = document.getElementById('compare-file');
+                if (!fileInput || !fileInput.files[0]) {
+                    alert("Please select a CSV file first.");
+                    return;
+                }
+
+                const gridSize = document.getElementById('results-grid');
+                const loading = document.getElementById('loading-state');
+
+                // Reset UI
+                gridSize.innerHTML = '';
+                gridSize.classList.add('hidden');
+                loading.classList.remove('hidden');
+                loading.classList.add('flex');
+
+                try {
+                    const formData = new FormData();
+                    formData.append('file', fileInput.files[0]);
+
+                    const response = await fetch('/compare', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        const err = await response.json();
+                        throw new Error(err.detail || "Analysis failed");
+                    }
+
+                    const data = await response.json();
+                    renderResults(data.results);
+
+                } catch (e) {
+                    alert("Error: " + e.message);
+                } finally {
+                    loading.classList.remove('flex');
+                    loading.classList.add('hidden');
+                    gridSize.classList.remove('hidden');
+                }
+            };
+        }
+
+        function renderResults(results) {
+            const grid = document.getElementById('results-grid');
+
+            results.forEach(res => {
+                const isSeizure = res.is_seizure;
+                const statusColor = isSeizure ? 'red' : 'green';
+                const statusIcon = isSeizure ? 'warning' : 'check_circle';
+                const statusText = isSeizure ? 'Seizure' : 'Normal';
+
+                const card = document.createElement('div');
+                card.className = "group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-[#e2e8f0] hover:shadow-md transition-shadow animate-fade-in";
+
+                // Card Header
+                const headerBg = isSeizure ? 'bg-red-50' : 'bg-green-50';
+                const pillBg = isSeizure ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700';
+
+                card.innerHTML = `
+                    <div class="p-5 border-b border-[#f1f5f9] ${headerBg}">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-[#111318] text-lg capitalize py-1">${res.model_name.replace('_', ' ')}</h3>
+                            <span class="inline-flex items-center gap-1 rounded-full ${pillBg} px-2 py-1 text-xs font-bold ring-1 ring-inset ring-${statusColor}-600/20">
+                                <span class="material-symbols-outlined text-[14px]">${statusIcon}</span>
+                                ${statusText}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex flex-col gap-6 flex-1">
+                        <!-- Stats -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1">
+                                <span class="text-xs font-medium text-[#64748b] uppercase tracking-wider">Confidence</span>
+                                <span class="text-2xl font-black text-[#111318]">${res.confidence_percentage}%</span>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <span class="text-xs font-medium text-[#64748b] uppercase tracking-wider">Latency</span>
+                                <span class="text-2xl font-black text-[#111318]">${res.latency_ms}ms</span>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full bg-gray-100 rounded-full h-2 mt-4 overflow-hidden">
+                             <div class="bg-${statusColor}-500 h-2 rounded-full" style="width: ${res.confidence_percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+
+</html>

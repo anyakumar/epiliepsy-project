@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contact - SRM Epilepsy Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-[#1e2330] border-b border-[#dbdfe6] dark:border-[#2a3140] px-6 lg:px-10 py-4 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">waves</span>
+                <span class="text-lg font-bold">SRM Epilepsy Project</span>
+            </a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+                <a href="datasets.html" class="hover:text-primary transition-colors">Datasets</a>
+                <a href="analysis.html" class="hover:text-primary transition-colors">Analysis</a>
+                <a href="compare.html" class="hover:text-primary transition-colors">Comparison</a>
+                <a href="team.html" class="hover:text-primary transition-colors">Team</a>
+                <a href="contact.html" class="text-primary font-bold">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-6">
+        <div class="bg-white p-10 rounded-xl shadow-sm border border-[#e2e8f0] max-w-lg w-full text-center">
+            <span class="material-symbols-outlined text-4xl text-primary mb-4">school</span>
+            <h1 class="text-2xl font-black mb-2">Academic Inquiries</h1>
+            <p class="text-[#616f89] mb-8">
+                Please direct all academic and research related inquiries to our department.
+            </p>
+
+            <div class="text-left space-y-4 bg-gray-50 p-6 rounded-lg">
+                <div>
+                    <span class="block text-xs font-bold uppercase text-gray-400">Department</span>
+                    <span class="font-medium">Department of Computer Science & Engineering</span>
+                </div>
+                <div>
+                    <span class="block text-xs font-bold uppercase text-gray-400">Context</span>
+                    <span class="font-medium">Undergraduate Research Project</span>
+                </div>
+                <div>
+                    <span class="block text-xs font-bold uppercase text-gray-400">Note</span>
+                    <span class="font-medium italic text-gray-600">For academic purposes only.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

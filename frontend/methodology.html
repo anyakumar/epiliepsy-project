@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Methodology - SRM Epilepsy Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-[#1e2330] border-b border-[#dbdfe6] dark:border-[#2a3140] px-6 lg:px-10 py-4 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">waves</span>
+                <span class="text-lg font-bold">SRM Epilepsy Project</span>
+            </a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="methodology.html" class="text-primary font-bold">Methodology</a>
+                <a href="datasets.html" class="hover:text-primary transition-colors">Datasets</a>
+                <a href="analysis.html" class="hover:text-primary transition-colors">Analysis</a>
+                <a href="compare.html" class="hover:text-primary transition-colors">Comparison</a>
+                <a href="team.html" class="hover:text-primary transition-colors">Team</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[960px] mx-auto w-full px-6 py-12">
+        <h1 class="text-3xl font-black mb-8">System Methodology</h1>
+
+        <section class="mb-10">
+            <h2 class="text-xl font-bold mb-4 text-primary">Overview</h2>
+            <p class="text-[#616f89] dark:text-gray-300 leading-relaxed">
+                This system leverages machine learning algorithms to automate the detection of seizure activities in EEG
+                signals.
+                By processing raw electrical activity from the brain, the platform identifies patterns associated with
+                epileptic events,
+                providing a streamlined workflow for research and academic analysis.
+            </p>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-xl font-bold mb-4 text-primary">Step-by-step Workflow</h2>
+            <div class="space-y-4">
+                <div class="flex gap-4">
+                    <span
+                        class="flex-none size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">1</span>
+                    <div>
+                        <h3 class="font-bold">Data Acquisition</h3>
+                        <p class="text-sm text-[#616f89]">EEG data is collected and stored as numerical features.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="flex-none size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">2</span>
+                    <div>
+                        <h3 class="font-bold">Upload</h3>
+                        <p class="text-sm text-[#616f89]">User uploads EEG data in CSV format.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="flex-none size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">3</span>
+                    <div>
+                        <h3 class="font-bold">Preprocessing</h3>
+                        <p class="text-sm text-[#616f89]">Data is validated, normalized, and standardized for model
+                            input.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="flex-none size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">4</span>
+                    <div>
+                        <h3 class="font-bold">Inference</h3>
+                        <p class="text-sm text-[#616f89]">Selected ML model analyzes the EEG patterns.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="flex-none size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">5</span>
+                    <div>
+                        <h3 class="font-bold">Result</h3>
+                        <p class="text-sm text-[#616f89]">System outputs seizure prediction with confidence scoring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-xl font-bold mb-4 text-primary">Models Used</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 border border-[#e2e8f0] rounded-lg">
+                    <h3 class="font-bold">Logistic Regression</h3>
+                    <p class="text-sm text-[#616f89]">Baseline linear classifier for comparison.</p>
+                </div>
+                <div class="p-4 border border-[#e2e8f0] rounded-lg">
+                    <h3 class="font-bold">SVM (RBF Kernel)</h3>
+                    <p class="text-sm text-[#616f89]">Effective for high-dimensional EEG feature spaces.</p>
+                </div>
+                <div class="p-4 border border-[#e2e8f0] rounded-lg">
+                    <h3 class="font-bold">Random Forest</h3>
+                    <p class="text-sm text-[#616f89]">Ensemble method providing robust feature importance.</p>
+                </div>
+                <div class="p-4 border border-[#e2e8f0] rounded-lg bg-blue-50/50 border-blue-100">
+                    <h3 class="font-bold text-primary">XGBoost</h3>
+                    <p class="text-sm text-[#616f89]">Gradient boosting framework yielding state-of-the-art performance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold mb-4 text-primary">Decision Logic</h2>
+            <ul class="list-disc pl-5 space-y-2 text-[#616f89]">
+                <li><strong>Binary Classification:</strong> Seizure vs. Non-Seizure.</li>
+                <li><strong>Confidence Scoring:</strong> Probabilistic assessment (Low/Medium/High).</li>
+                <li><strong>Interpretability:</strong> Explanations generated based on feature contribution (e.g.,
+                    variance, entropy).</li>
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>

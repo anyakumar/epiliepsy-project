@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Datasets - SRM Epilepsy Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-[#1e2330] border-b border-[#dbdfe6] dark:border-[#2a3140] px-6 lg:px-10 py-4 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">waves</span>
+                <span class="text-lg font-bold">SRM Epilepsy Project</span>
+            </a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+                <a href="datasets.html" class="text-primary font-bold">Datasets</a>
+                <a href="analysis.html" class="hover:text-primary transition-colors">Analysis</a>
+                <a href="compare.html" class="hover:text-primary transition-colors">Comparison</a>
+                <a href="team.html" class="hover:text-primary transition-colors">Team</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[960px] mx-auto w-full px-6 py-12">
+        <h1 class="text-3xl font-black mb-8">Dataset Information</h1>
+
+        <div class="bg-white p-8 rounded-xl border border-[#e2e8f0] shadow-sm mb-8">
+            <h2 class="text-xl font-bold mb-4 text-[#111318]">Primary Dataset: UCI Epileptic Seizure Recognition</h2>
+            <p class="text-[#616f89] mb-4">
+                The dataset consists of EEG recordings represented as 178 numerical features per sample.
+                Each sample captures a 1-second recording of brain activity.
+            </p>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 py-4 border-y border-gray-100">
+                <div>
+                    <span class="block text-2xl font-black text-primary">11,500</span>
+                    <span class="text-xs uppercase font-bold text-gray-500">Total Samples</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-black text-primary">178</span>
+                    <span class="text-xs uppercase font-bold text-gray-500">Features</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-black text-primary">5</span>
+                    <span class="text-xs uppercase font-bold text-gray-500">Classes</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-black text-primary">23</span>
+                    <span class="text-xs uppercase font-bold text-gray-500">Subjects</span>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="font-bold text-lg mb-4 text-[#111318]">Class Labels & Recording Conditions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-lg bg-red-50 border border-red-100">
+                        <span class="block text-xs font-bold uppercase text-red-600 mb-1">Class 1</span>
+                        <h4 class="font-bold text-[#111318]">Seizure Activity</h4>
+                        <p class="text-xs text-gray-600 mt-1">Recording of seizure activity in epileptic subjects.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border border-gray-100">
+                        <span class="block text-xs font-bold uppercase text-gray-500 mb-1">Class 2</span>
+                        <h4 class="font-bold text-[#111318]">Tumor Area</h4>
+                        <p class="text-xs text-gray-600 mt-1">Recorded from tumor area (No seizure).</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border border-gray-100">
+                        <span class="block text-xs font-bold uppercase text-gray-500 mb-1">Class 3</span>
+                        <h4 class="font-bold text-[#111318]">Healthy Area</h4>
+                        <p class="text-xs text-gray-600 mt-1">Healthy brain area in tumor subjects.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border border-gray-100">
+                        <span class="block text-xs font-bold uppercase text-gray-500 mb-1">Class 4</span>
+                        <h4 class="font-bold text-[#111318]">Eyes Closed</h4>
+                        <p class="text-xs text-gray-600 mt-1">Healthy subject with eyes closed.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border border-gray-100">
+                        <span class="block text-xs font-bold uppercase text-gray-500 mb-1">Class 5</span>
+                        <h4 class="font-bold text-[#111318]">Eyes Open</h4>
+                        <p class="text-xs text-gray-600 mt-1">Healthy subject with eyes open.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex flex-col gap-2 border-t border-gray-100 pt-6">
+                <h3 class="font-bold">Source & Credits</h3>
+                <p class="text-sm text-[#616f89]">
+                    Sourced from the <a href="https://archive.ics.uci.edu/ml/datasets/Epileptic+Seizure+Recognition"
+                        target="_blank" class="text-primary hover:underline">UCI Machine Learning Repository</a>.
+                    Original study by Andrzejak et al. (2001).
+                </p>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <span class="material-symbols-outlined text-amber-600">policy</span>
+            <div>
+                <h3 class="font-bold text-amber-800">Ethical Note & Privacy</h3>
+                <p class="text-sm text-amber-800/80">
+                    This dataset contains heavily processed and anonymized numerical data.
+                    No patient-identifiable information (PII) is included or accessible.
+                    The data is used strictly for academic research and educational model benchmarking.
+                </p>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>
