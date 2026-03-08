@@ -46,8 +46,8 @@ CNN_DENSE_UNITS = 128               # Dense layer before output
 CNN_DROPOUT = 0.5                   # Dropout rate
 CNN_LEARNING_RATE = 1e-3
 CNN_BATCH_SIZE = 64
-CNN_EPOCHS = 50
-CNN_PATIENCE = 10                   # Early stopping patience
+CNN_EPOCHS = 10                     # Set higher (e.g. 50) for full training
+CNN_PATIENCE = 5                    # Early stopping patience
 
 # ─── LSTM / BiLSTM Hyperparameters ───────────────────────────────────────────
 LSTM_UNITS = [64, 32]              # Units per LSTM layer
@@ -56,8 +56,8 @@ LSTM_DROPOUT = 0.3
 LSTM_RECURRENT_DROPOUT = 0.2
 LSTM_LEARNING_RATE = 1e-3
 LSTM_BATCH_SIZE = 64
-LSTM_EPOCHS = 50
-LSTM_PATIENCE = 10
+LSTM_EPOCHS = 10                    # Set higher (e.g. 50) for full training
+LSTM_PATIENCE = 5
 LSTM_BIDIRECTIONAL = True           # Use BiLSTM if True
 
 # ─── Sliding Window (Real-time Simulation) ───────────────────────────────────
