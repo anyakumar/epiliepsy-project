@@ -135,16 +135,21 @@
                             <span class="material-symbols-outlined text-primary text-[20px]">tune</span>
                             2. Active Models
                         </h3>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-2.5">
                             <div
-                                class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
-                                <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
-                                <p class="text-primary text-sm font-semibold">Logistic Regression</p>
+                                class="flex items-center gap-x-2 rounded-full border border-purple-500/30 bg-purple-50 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-purple-600 text-[18px]">check_circle</span>
+                                <p class="text-purple-700 text-sm font-semibold">1D CNN (Grad-CAM)</p>
+                            </div>
+                            <div
+                                class="flex items-center gap-x-2 rounded-full border border-purple-500/30 bg-purple-50 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-purple-600 text-[18px]">check_circle</span>
+                                <p class="text-purple-700 text-sm font-semibold">BiLSTM (Temporal)</p>
                             </div>
                             <div
                                 class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
                                 <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
-                                <p class="text-primary text-sm font-semibold">SVM (RBF Kernel)</p>
+                                <p class="text-primary text-sm font-semibold">XGBoost</p>
                             </div>
                             <div
                                 class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
@@ -154,13 +159,13 @@
                             <div
                                 class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
                                 <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
-                                <p class="text-primary text-sm font-semibold">XGBoost</p>
+                                <p class="text-primary text-sm font-semibold">SVM (RBF)</p>
                             </div>
-                            <button
-                                class="flex items-center gap-x-1 rounded-full border border-dashed border-[#94a3b8] px-3 py-1.5 hover:bg-gray-50 transition-colors">
-                                <span class="material-symbols-outlined text-[#64748b] text-[18px]">add</span>
-                                <p class="text-[#64748b] text-sm font-medium">Add Model</p>
-                            </button>
+                            <div
+                                class="flex items-center gap-x-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                                <p class="text-primary text-sm font-semibold">Logistic Regression</p>
+                            </div>
                         </div>
                     </div>
                     <div class="mt-6 flex justify-end">
@@ -284,11 +289,35 @@
                 const headerBg = isSeizure ? 'bg-red-50' : 'bg-green-50';
                 const pillBg = isSeizure ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700';
 
+                // Display Names & Badges
+                const isDL = res.model_type === "Deep Learning";
+                const typeColor = isDL ? "bg-purple-100 text-purple-700" : "bg-blue-100 text-blue-700";
+
+                let displayName = res.model_name.replace(/_/g, ' ');
+                if (res.model_name === 'cnn') displayName = '1D CNN';
+                if (res.model_name === 'bilstm') displayName = 'BiLSTM';
+                if (res.model_name === 'svm_rbf') displayName = 'SVM (RBF)';
+
+                const gradcamBadge = res.supports_gradcam ? `
+                    <span class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                        <span class="material-symbols-outlined text-[13px]">visibility</span>
+                        Grad-CAM
+                    </span>
+                ` : '';
+
                 card.innerHTML = `
                     <div class="p-5 border-b border-[#f1f5f9] ${headerBg}">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-bold text-[#111318] text-lg capitalize py-1">${res.model_name.replace('_', ' ')}</h3>
-                            <span class="inline-flex items-center gap-1 rounded-full ${pillBg} px-2 py-1 text-xs font-bold ring-1 ring-inset ring-${statusColor}-600/20">
+                            <div>
+                                <h3 class="font-bold text-[#111318] text-lg capitalize py-0.5">${displayName}</h3>
+                                <div class="flex items-center gap-1.5 mt-1">
+                                    <span class="rounded-full ${typeColor} px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                                        ${res.model_type || 'Model'}
+                                    </span>
+                                    ${gradcamBadge}
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center gap-1 rounded-full ${pillBg} px-2.5 py-1 text-xs font-bold ring-1 ring-inset ring-${statusColor}-600/20">
                                 <span class="material-symbols-outlined text-[14px]">${statusIcon}</span>
                                 ${statusText}
                             </span>
@@ -308,7 +337,7 @@
                             </div>
                         </div>
                         
-                        <div class="w-full bg-gray-100 rounded-full h-2 mt-4 overflow-hidden">
+                        <div class="w-full bg-gray-100 rounded-full h-2 mt-auto overflow-hidden">
                              <div class="bg-${statusColor}-500 h-2 rounded-full" style="width: ${res.confidence_percentage}%"></div>
                         </div>
                     </div>

@@ -98,43 +98,63 @@
                     <span
                         class="flex-none size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">5</span>
                     <div>
-                        <h3 class="font-bold">Result</h3>
-                        <p class="text-sm text-[#616f89]">System outputs seizure prediction with confidence scoring.</p>
+                        <h3 class="font-bold">Result & Classification</h3>
+                        <p class="text-sm text-[#616f89]">System outputs binary seizure prediction with confidence scoring.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="flex-none size-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold">6</span>
+                    <div>
+                        <h3 class="font-bold text-purple-900 dark:text-purple-300">Grad-CAM Temporal Explainability</h3>
+                        <p class="text-sm text-[#616f89]">For 1D CNN predictions, gradient-weighted class activation mapping (Grad-CAM) highlights exact 1-second temporal segments driving seizure detection.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="mb-10">
-            <h2 class="text-xl font-bold mb-4 text-primary">Models Used</h2>
+            <h2 class="text-xl font-bold mb-4 text-primary">Models Evaluated</h2>
             <div class="grid md:grid-cols-2 gap-4">
-                <div class="p-4 border border-[#e2e8f0] rounded-lg">
-                    <h3 class="font-bold">Logistic Regression</h3>
-                    <p class="text-sm text-[#616f89]">Baseline linear classifier for comparison.</p>
+                <div class="p-4 border border-purple-200 bg-purple-50/40 rounded-lg">
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-bold text-purple-900">1D CNN + Grad-CAM</h3>
+                        <span class="text-[10px] uppercase font-bold bg-purple-200 text-purple-800 px-2 py-0.5 rounded">Deep Learning</span>
+                    </div>
+                    <p class="text-sm text-[#616f89]">Multi-stage 1D convolutional network with batch normalization and global average pooling. Fully interpretable via Grad-CAM temporal maps.</p>
+                </div>
+                <div class="p-4 border border-purple-200 bg-purple-50/40 rounded-lg">
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-bold text-purple-900">Bidirectional LSTM (BiLSTM)</h3>
+                        <span class="text-[10px] uppercase font-bold bg-purple-200 text-purple-800 px-2 py-0.5 rounded">Deep Learning</span>
+                    </div>
+                    <p class="text-sm text-[#616f89]">Recurrent neural network capturing forward and backward temporal dependencies across sequential EEG voltage points.</p>
                 </div>
                 <div class="p-4 border border-[#e2e8f0] rounded-lg">
-                    <h3 class="font-bold">SVM (RBF Kernel)</h3>
-                    <p class="text-sm text-[#616f89]">Effective for high-dimensional EEG feature spaces.</p>
+                    <h3 class="font-bold">XGBoost</h3>
+                    <p class="text-sm text-[#616f89]">Gradient boosted decision trees yielding strong baseline tabular performance.</p>
                 </div>
                 <div class="p-4 border border-[#e2e8f0] rounded-lg">
                     <h3 class="font-bold">Random Forest</h3>
                     <p class="text-sm text-[#616f89]">Ensemble method providing robust feature importance.</p>
                 </div>
-                <div class="p-4 border border-[#e2e8f0] rounded-lg bg-blue-50/50 border-blue-100">
-                    <h3 class="font-bold text-primary">XGBoost</h3>
-                    <p class="text-sm text-[#616f89]">Gradient boosting framework yielding state-of-the-art performance.
-                    </p>
+                <div class="p-4 border border-[#e2e8f0] rounded-lg">
+                    <h3 class="font-bold">SVM (RBF Kernel)</h3>
+                    <p class="text-sm text-[#616f89]">Non-linear support vector machine mapping EEG features to high-dimensional space.</p>
+                </div>
+                <div class="p-4 border border-[#e2e8f0] rounded-lg">
+                    <h3 class="font-bold">Logistic Regression</h3>
+                    <p class="text-sm text-[#616f89]">Baseline linear classifier for benchmark comparisons.</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2 class="text-xl font-bold mb-4 text-primary">Decision Logic</h2>
+            <h2 class="text-xl font-bold mb-4 text-primary">Decision & Explainability Logic</h2>
             <ul class="list-disc pl-5 space-y-2 text-[#616f89]">
-                <li><strong>Binary Classification:</strong> Seizure vs. Non-Seizure.</li>
-                <li><strong>Confidence Scoring:</strong> Probabilistic assessment (Low/Medium/High).</li>
-                <li><strong>Interpretability:</strong> Explanations generated based on feature contribution (e.g.,
-                    variance, entropy).</li>
+                <li><strong>Binary Classification:</strong> Seizure vs. Non-Seizure (Class 1 vs Classes 2–5).</li>
+                <li><strong>Confidence Scoring:</strong> Calibrated probability score mapped to Low (&lt;70%), Medium (70–90%), and High (&gt;90%) tiers.</li>
+                <li><strong>Temporal Interpretability:</strong> Grad-CAM gradients backpropagated to the final Conv1D layer identify exact time intervals of paroxysmal EEG activity.</li>
             </ul>
         </section>
     </main>
