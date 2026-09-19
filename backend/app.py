@@ -46,6 +46,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def _parse_csv_content(content: bytes) -> pd.DataFrame:
+    """Robustly parse CSV bytes into a DataFrame handling headerless or headed data."""
+    try:
+        df = pd.read_csv(io.BytesIO(content))
+        if len(df) == 0 or pd.to_numeric(df.columns, errors='coerce').notnull().sum() > 10:
+            return pd.read_csv(io.BytesIO(content), header=None)
+        return df
+    except Exception:
+        return pd.read_csv(io.BytesIO(content), header=None)
+
 @app.get("/models")
 def get_models():
     """Returns a list of available ML & DL models with metadata."""
@@ -73,10 +83,7 @@ async def predict_seizure(
 
     try:
         content = await file.read()
-        try:
-            df = pd.read_csv(io.BytesIO(content))
-        except Exception:
-            df = pd.read_csv(io.BytesIO(content), header=None)
+        df = _parse_csv_content(content)
 
         # Preprocess
         try:
@@ -171,10 +178,7 @@ async def explain_eeg(
 
     try:
         content = await file.read()
-        try:
-            df = pd.read_csv(io.BytesIO(content))
-        except Exception:
-            df = pd.read_csv(io.BytesIO(content), header=None)
+        df = _parse_csv_content(content)
 
         scaled_data = preprocessor.validate_and_scale(df)
         predictions, seizure_probs = model_manager.predict(model_name, scaled_data)
@@ -213,10 +217,7 @@ async def compare_models(file: UploadFile = File(...)):
 
     try:
         content = await file.read()
-        try:
-            df = pd.read_csv(io.BytesIO(content))
-        except Exception:
-            df = pd.read_csv(io.BytesIO(content), header=None)
+        df = _parse_csv_content(content)
 
         # Preprocess once
         try:

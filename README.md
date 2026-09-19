@@ -94,21 +94,33 @@ pip install -r requirements.txt
 
 ## Quick Start
 
-### A) Run existing ML API
+### A) Run Web Interface (ML + Deep Learning + Grad-CAM)
 
-1. Start backend
+1. Start FastAPI backend:
 
 ```bash
 uvicorn backend.app:app --reload
 ```
 
-2. Open frontend
+2. Open the web interface in your browser:
 
-```text
-http://127.0.0.1:8000/index.html
+- **EEG Analysis & Grad-CAM Heatmap**: `http://127.0.0.1:8000/analysis.html`
+  - Select **1D CNN** to view the live EEG signal with an overlay of the Grad-CAM temporal attention heatmap and critical time windows.
+  - Select **BiLSTM** or classical models (**XGBoost**, **Random Forest**, **SVM**, **Logistic Regression**).
+- **Multi-Model Comparison**: `http://127.0.0.1:8000/compare.html`
+  - Runs all 6 classical and deep learning models concurrently with real-time latency and confidence benchmarking.
+
+### B) Run Automated Tests
+
+```bash
+# Run unit tests for Preprocessor, ModelManager, and Grad-CAM:
+python -m unittest tests/test_predict.py
+
+# Run end-to-end FastAPI integration tests:
+python test_api.py
 ```
 
-### B) Train baseline ML models
+### C) Train baseline ML models
 
 ```bash
 python train_models.py
